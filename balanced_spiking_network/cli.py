@@ -145,14 +145,14 @@ def main():
     mu_2 = None
 
     if args.mu_1 == 'sine':
-        mu_1 = generate_input_sine(net.rng_input, args.duration, len(input_system.input_1_neurons), args.dt)
+        mu_1 = generate_input_sine(net.rng_input, args.duration, len(net.input_neurons[0]), args.dt)
     elif args.mu_1 == 'bumps':
-        mu_1 = generate_input_bumps(net.rng_input, args.duration, len(input_system.input_1_neurons), args.dt)
+        mu_1 = generate_input_bumps(net.rng_input, args.duration, len(net.input_neurons[0]), args.dt)
 
     if args.mu_2 == 'sine':
-        mu_2 = generate_input_sine(net.rng_input, args.duration, len(input_system.input_2_neurons), args.dt)
+        mu_2 = generate_input_sine(net.rng_input, args.duration, len(net.input_neurons[1]), args.dt)
     elif args.mu_2 == 'bumps':
-        mu_2 = generate_input_bumps(net.rng_input, args.duration, len(input_system.input_2_neurons), args.dt)
+        mu_2 = generate_input_bumps(net.rng_input, args.duration, len(net.input_neurons[1]), args.dt)
 
     # Initialize simulation engine
     engine = SimulationEngine(net)
