@@ -95,8 +95,6 @@ def main():
                         help="Simulation duration in ms")
     parser.add_argument("-o", "--output", type=str, default="spikes.pkl",
                         help="Output spike data file (pickle format)")
-    parser.add_argument("--seed", type=int, default=None,
-                        help="Random seed for reproducibility")
     parser.add_argument("--mu_zero", type=float, default=15.1,
                         help="External constant input")
     parser.add_argument("--V_th_std", type=float, default=0.0,
@@ -119,7 +117,10 @@ def main():
                         help="Simulation time step")
     parser.add_argument("--burn_in", type=float, default=0.0,
                         help="Burn in time for the simulation to remove the transients")
-
+    parser.add_argument("--session", type=int, default=0,
+                        help="Session number for RNG")
+    parser.add_argument("--trial", type=int, default=0,
+                        help="Trial number for RNG")
     parser.add_argument("--mu_1", choices=['none', 'sine', 'bumps'], default='none',
                         help="Type of mu_1 input (none, sine, or bumps)")
     parser.add_argument("--mu_2", choices=['none', 'sine', 'bumps'], default='none',
@@ -132,7 +133,7 @@ def main():
                                  tau_m=args.tau_m, V_th_mean=args.V_th_mean,
                                  V_th_std=args.V_th_std, J_mean=args.J_mean,
                                  mu_zero=args.mu_zero, dt=args.dt,
-                                 rng_seed=args.seed)
+                                 session=args.session, trial=args.trial)
     net.reset_state()
 
     # Initialize input system
@@ -144,14 +145,14 @@ def main():
     mu_2 = None
 
     if args.mu_1 == 'sine':
-        mu_1 = generate_input_sine(net.network_rng, args.duration, len(input_system.input_1_neurons), args.dt)
+        mu_1 = generate_input_sine(net.rng_input, args.duration, len(input_system.input_1_neurons), args.dt)
     elif args.mu_1 == 'bumps':
-        mu_1 = generate_input_bumps(net.network_rng, args.duration, len(input_system.input_1_neurons), args.dt)
+        mu_1 = generate_input_bumps(net.rng_input, args.duration, len(input_system.input_1_neurons), args.dt)
 
     if args.mu_2 == 'sine':
-        mu_2 = generate_input_sine(net.network_rng, args.duration, len(input_system.input_2_neurons), args.dt)
+        mu_2 = generate_input_sine(net.rng_input, args.duration, len(input_system.input_2_neurons), args.dt)
     elif args.mu_2 == 'bumps':
-        mu_2 = generate_input_bumps(net.network_rng, args.duration, len(input_system.input_2_neurons), args.dt)
+        mu_2 = generate_input_bumps(net.rng_input, args.duration, len(input_system.input_2_neurons), args.dt)
 
     # Initialize simulation engine
     engine = SimulationEngine(net)

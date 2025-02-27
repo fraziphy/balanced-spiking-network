@@ -12,7 +12,8 @@ class BalancedSpikingNetwork:
                  J_mean = 1e-3,
                  mu_zero = 15.1, # Added mu_zero to init
                  dt = 0.1, # Added dt to init
-                 rng_seed=None):
+                 session = 0,
+                 trial = 0):
 
         # Initialize parameters
         self.params = NeuralParameters()
@@ -33,7 +34,13 @@ class BalancedSpikingNetwork:
         self.C_I = C - self.C_E
 
         # Random state management
-        self.rng = np.random.default_rng(rng_seed)
+        self.rng_init = np.random.default_rng(np.random.SeedSequence(entropy=654321, spawn_key=(0, session, 1, trial)))
+        self.rng = [np.random.default_rng(np.random.SeedSequence(entropy=654321, spawn_key=(0, session, 0, i))) for i in range(4)]
+        self.rng_input = np.random.default_rng(np.random.SeedSequence(entropy=654321, spawn_key=(0, session, 2, trial)))
+        # rng_init for initial states different across trials and sessions
+        # rng[0] is used for generating thresholds, rng[1] for connectivity,
+        # rng[2] for ID of stimulated neurons, rng[3] for RNG check
+        # rng_input for inputs across trials
 
         # Network state
         self.V = None
@@ -48,11 +55,11 @@ class BalancedSpikingNetwork:
 
     def reset_state(self):
         """Reset network to initial conditions"""
-        self.V = self.rng.uniform(self.params.V_r,
+        self.V = self.rng_init.uniform(self.params.V_r,
                                 self.V_th_mean,
                                 self.N)
         self.V_th = generate_heterogeneous_thresholds(
-            self.V_th_mean, self.V_th_std, self.rng, self.N # Used stored V_th_std
+            self.V_th_mean, self.V_th_std, self.rng[0], self.N # Used stored V_th_std
         )
         self.last_spike = np.full(self.N, -np.inf)
         self.refractory = np.zeros(self.N, dtype=bool)
@@ -62,7 +69,7 @@ class BalancedSpikingNetwork:
             C_E = self.C_E,
             C_I = self.C_I,
             mean_weight=self.J_mean,
-            rng=self.rng,
+            rng=self.rng[1],
             g=self.g
         )
 
