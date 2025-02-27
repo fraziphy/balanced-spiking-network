@@ -7,6 +7,12 @@ A Python package for simulating balanced spiking neural networks.
 
 pip install git+ssh://git@github.com/yourusername/balanced_spiking_network.git
 
+## Usage
+
+Run the simulation from the command line:
+
+bsn --duration 1000 --output spikes.pkl --seed 42
+
 
 For help on available options:
 
