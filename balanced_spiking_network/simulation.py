@@ -13,8 +13,7 @@ class SimulationEngine:
 
         # **1. Burn-in Period (Transient State Removal)**
         if T_burn_in > 0:
-            burn_in_state, _ = self._simulate(T_burn_in, record_spikes=False, mu_1=None, mu_2=None)  # No recording during burn-in
-            self.net.set_state(burn_in_state)
+            self._simulate(T_burn_in, record_spikes=False, mu_1=None, mu_2=None)  # No recording during burn-in
         # **2. Recording Period**
         final_state, spikes = self._simulate(T_sim, record_spikes=record_spikes, mu_1=mu_1, mu_2=mu_2) #simulation call returns
 

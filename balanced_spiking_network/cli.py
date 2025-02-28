@@ -158,12 +158,15 @@ def main():
     engine = SimulationEngine(net)
 
     # Run simulation
-    # spikes = engine.run(args.duration, T_burn_in=args.burn_in, record_spikes=True, mu_1=mu_1, mu_2=mu_2)
+    spikes = engine.run(args.duration, T_burn_in=args.burn_in, record_spikes=True, mu_1=mu_1, mu_2=mu_2)
 
-    spik = net.rng[3].normal(0, 1, 3)
+    data_to_save = {"spikes":spikes,
+                    "input_1_neurons":net.input_neurons[0],
+                    "input_2_neurons":net.input_neurons[1],
+                    "rng_check":net.rng[3].normal(0, 1, 3)}
 
     # Save results
-    save_spikes(spik, args.output)
+    save_spikes(data_to_save, args.output)
 
 def save_spikes(spikes, filename):
     """Save spike times to a pickle file."""
