@@ -1,8 +1,10 @@
 import numpy as np
-from .connectivity import create_connectivity_matrix
 from .parameters import NeuralParameters
-from .utilities import generate_heterogeneous_thresholds
-
+from .utilities import (
+    generate_heterogeneous_thresholds as gen_thresholds,
+    create_connectivity_matrix as create_conn_matrix,
+    select_input_neurons as select_inputs
+)
 class BalancedSpikingNetwork:
     """Main network class"""
 
@@ -58,20 +60,26 @@ class BalancedSpikingNetwork:
         self.V = self.rng_init.uniform(self.params.V_r,
                                 self.V_th_mean,
                                 self.N)
-        self.V_th = generate_heterogeneous_thresholds(
-            self.V_th_mean, self.V_th_std, self.rng[0], self.N # Used stored V_th_std
+        self.V_th = gen_thresholds(
+            self.V_th_mean, self.V_th_std, self.N, self.rng[0] # Used stored V_th_std
         )
         self.last_spike = np.full(self.N, -np.inf)
         self.refractory = np.zeros(self.N, dtype=bool)
-        self.connectivity = create_connectivity_matrix(
+        self.connectivity = create_conn_matrix(
             N = self.N,
             N_E = self.N_E,
             C_E = self.C_E,
             C_I = self.C_I,
             mean_weight=self.J_mean,
-            rng=self.rng[1],
-            g=self.g
+            g=self.g,
+            rng=self.rng[1]
         )
+        self.input_neurons = select_inputs(
+            N = self.N,
+            N_E = self.N_E,
+            portion = 0.3,
+            overlap = 0.1,
+            rng = self.rng[2])
 
     def set_state(self, state):
         self.V, self.last_spike, self.refractory = state

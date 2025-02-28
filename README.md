@@ -5,13 +5,15 @@ A Python package for simulating balanced spiking neural networks.
 ## Installation
 
 
-pip install git+ssh://git@github.com/yourusername/balanced_spiking_network.git
+pip install git+ssh://git@github.com/fraziphy/balanced_spiking_network.git
+
+!python -m pip uninstall balanced_spiking_network.git --yes
 
 ## Usage
 
 Run the simulation from the command line:
 
-bsn --duration 1000 --output spikes.pkl --seed 42
+bsn --duration 100 --mu_1 sine --output spikes_sine.pkl --trial 1
 
 
 For help on available options:
