@@ -13,9 +13,8 @@ class SimulationEngine:
 
         # **1. Burn-in Period (Transient State Removal)**
         if T_burn_in > 0:
-            self._simulate(T_burn_in, record_spikes=False, mu_1=None, mu_2=None)  # No recording during burn-in
-            self.net.reset_state()
-
+            burn_in_state, _ = self._simulate(T_burn_in, record_spikes=False, mu_1=None, mu_2=None)  # No recording during burn-in
+            self.net.set_state(burn_in_state)
         # **2. Recording Period**
         final_state, spikes = self._simulate(T_sim, record_spikes=record_spikes, mu_1=mu_1, mu_2=mu_2) #simulation call returns
 
@@ -58,7 +57,7 @@ class SimulationEngine:
         last_spike = np.where(last_spike < T_sim, last_spike - T_sim, -np.inf)
 
         final_state = (V, last_spike, refractory)
-        self.net.V, self.net.last_spike, self.net.refractory = final_state  #update network state
+        self.net.set_state(final_state)  #update network state
 
         if record_spikes:
             return final_state, spikes

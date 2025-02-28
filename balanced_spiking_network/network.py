@@ -73,6 +73,9 @@ class BalancedSpikingNetwork:
             g=self.g
         )
 
+    def set_state(self, state):
+        self.V, self.last_spike, self.refractory = state
+
     def get_params(self):
         """Return the network parameters."""
         return self.params
