@@ -120,6 +120,7 @@ balanced_spiking_network/
 │ ├── cli.py # Command-line interface.
 │ ├── utilities.py # Utility functions.
 ├── setup.py # Installation script.
+├── LICENSE.txt. # The license file for the project.
 └── README.md # This file.
 
 ```
@@ -131,6 +132,7 @@ balanced_spiking_network/
 -   `balanced_spiking_network/cli.py`: Provides a command-line interface for running simulations.
 -   `balanced_spiking_network/utilities.py`: Contains utility functions used throughout the package.
 -   `setup.py`:  The installation script for the package.
+-   `LICENSE.txt`: The license file for the project.
 -   `README.md`: Provides an overview of the project and instructions for installation and usage.
 
 ------------------------------------------------------------------------------------------------------------
