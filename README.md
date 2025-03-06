@@ -67,24 +67,39 @@ Define input stimuli
 input_signal = inputs.ConstantInput(rate=10)
 ```
 
-Simulate the network
+Simulate the network:
 
 ```
-sim = simulation.Simulation(network=net, input=input_signal, duration=1000)
-results = sim.run()
+# Initialize simulation engine
+engine = SimulationEngine(net)
+
+# Run simulation
+spikes = engine.run()
+
+data_to_save = {"spikes":spikes}
+
+# Save results
+with open(filename, 'wb') as f:
+    pickle.dump(data_to_save, f)
+save_spikes(, args.output)
+
 ```
 
 ### Command-Line Interface (CLI)
 
-The package also provides a CLI for running simulations. Run the simulation from the command line for a network subject to constant input of 18 mV for 100 ms for the trial number one and store the data as spikes.pkl:
+The package also provides a CLI for running simulations. Run the simulation from the command line for two identical networks initialized differently where they are subject to constant input of 18 mV for 100 ms and store the data as spikes_trial_number.pkl:
 
-bsn --duration 100 --mu_zero 18 --output spikes.pkl --trial 1
-
+```
+for trial in {0..1}; do
+	bsn --duration 100 --mu_zero 18 --output spikes_${trial}.pkl --trial ${trial}
+done
+```
 
 For help on available options:
 
+```
 bsn --help
-
+```
 
 ------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------
