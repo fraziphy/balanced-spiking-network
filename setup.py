@@ -18,7 +18,7 @@ setup(
     description='A balanced spiking neural network simulation package',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/yourusername/balanced_spiking_network',  # Replace with your repo URL
+    url='https://github.com/yourusername/balanced-spiking-network',  # Replace with your repo URL
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',  # Choose appropriate license
