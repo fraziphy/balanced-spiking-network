@@ -1,4 +1,4 @@
-# balanced_spiking_network
+# balanced-spiking-network
 
 [![License](https://img.shields.io/badge/license-GNU%20GPL%20v3.0-blue.svg)](LICENSE)
 [![Python Version](https://img.shields.io/badge/python-3.7+-blue.svg)]()
@@ -26,7 +26,7 @@
 
 To install the `balanced_spiking_network` package, run:
 ```
-!pip install git+ssh://git@github.com/fraziphy/balanced_spiking_network.git
+!pip install git+ssh://git@github.com/fraziphy/balanced-spiking-network.git
 ```
 
 This command installs the package and its dependencies. Make sure you have Python 3.7 or higher installed.
@@ -37,7 +37,7 @@ This command installs the package and its dependencies. Make sure you have Pytho
 To **uninstall** the module, please copy and execute the following command in a single cell:
 
 ```
-!python -m pip uninstall balanced_spiking_network --yes
+pip uninstall balanced-spiking-network -y
 ```
 
 ------------------------------------------------------------------------------------------------------------
@@ -110,7 +110,7 @@ bsn --help
 
 ## The structure of the project is as follows:
 ```
-balanced_spiking_network/
+balanced-spiking-network/
 ├── balanced_spiking_network/
 │ ├── init.py
 │ ├── network.py # Defines the Network class.
@@ -203,4 +203,4 @@ This project is licensed under the [GNU General Public License v3.0](LICENSE)
 ## Contact
 
 - **Contact information:** [email](farhad.razi.1988@gmail.com)
-# balanced_spiking_network
+# balanced-spiking-network
