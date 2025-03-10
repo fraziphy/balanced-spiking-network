@@ -26,7 +26,7 @@
 
 To install the `balanced_spiking_network` package, run:
 ```
-!pip install git+ssh://git@github.com/fraziphy/balanced-spiking-network.git
+!pip install git+ssh://git@github.com/fraziphy/balanced-spiking-network.git@v1.0.0
 ```
 
 This command installs the package and its dependencies. Make sure you have Python 3.7 or higher installed.
@@ -37,7 +37,7 @@ This command installs the package and its dependencies. Make sure you have Pytho
 To **uninstall** the module, please copy and execute the following command in a single cell:
 
 ```
-pip uninstall balanced-spiking-network -y
+pip uninstall balanced-spiking-network@v1.0.0 -y
 ```
 
 ------------------------------------------------------------------------------------------------------------
@@ -121,6 +121,7 @@ balanced-spiking-network/
 │ ├── utilities.py # Utility functions.
 ├── setup.py # Installation script.
 ├── LICENSE.txt. # The license file for the project.
+├── CHANGELOG.md  # The changelog file.
 └── README.md # This file.
 
 ```
@@ -133,6 +134,7 @@ balanced-spiking-network/
 -   `balanced_spiking_network/utilities.py`: Contains utility functions used throughout the package.
 -   `setup.py`:  The installation script for the package.
 -   `LICENSE.txt`: The license file for the project.
+-   `CHANGELOG.md`: Documents the version history of the project, listing notable changes, additions, and fixes for each release.
 -   `README.md`: Provides an overview of the project and instructions for installation and usage.
 
 ------------------------------------------------------------------------------------------------------------
@@ -203,4 +205,22 @@ This project is licensed under the [GNU General Public License v3.0](LICENSE)
 ## Contact
 
 - **Contact information:** [email](farhad.razi.1988@gmail.com)
+
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+
+## Acknowledgments
+
+This work was supported by the Dutch Research Council (NWO Vidi grant VI.Vidi.213.137) awarded to Dr. [Fleur Zeldenrust](https://fleurzeldenrust.nl/).
+
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
 # balanced-spiking-network
