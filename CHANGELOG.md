@@ -17,13 +17,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Enhanced biological plausibility by enforcing V_th > V_r constraint across all generated thresholds
 - Improved handling of zero standard deviation cases in threshold generation
+- Updated setup.py for dynamic versioning
 
 ### Fixed
 - Ensured backward compatibility with default uniform distribution
 
+## [1.0.0-dev] - [Date of v1.0.0-dev release]
+
+### Added
+- Initial development release
+- [List any specific features or changes introduced in this dev version]
+
 ## [1.0.0] - [Release date of v1.0.0]
 
-- Initial release
+- Initial stable release
 
 [1.1.0]: https://github.com/fraziphy/balanced-spiking-network/compare/v1.0.0...v1.1.0
+[1.0.0-dev]: https://github.com/fraziphy/balanced-spiking-network/releases/tag/v1.0.0-dev
 [1.0.0]: https://github.com/fraziphy/balanced-spiking-network/releases/tag/v1.0.0
