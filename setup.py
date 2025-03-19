@@ -1,8 +1,27 @@
+import subprocess
 from setuptools import setup, find_packages
+
+
+def get_version():
+    """
+    Get the latest version from Git tags.
+    Fallback to '0.0.0' if no tags are found or Git is unavailable.
+    """
+    try:
+        # Use 'git describe' to get the latest tag
+        version = subprocess.check_output(
+            ['git', 'describe', '--tags', '--abbrev=0'],
+            universal_newlines=True
+        ).strip()
+    except Exception:
+        # Fallback if no tags are found or Git is unavailable
+        version = "0.0.0"
+    return version
+
 
 setup(
     name='balanced-spiking-network',
-    version='1.0.0',
+    version=get_version(),  # Dynamically fetch version
     packages=find_packages(),
     install_requires=[
         'numpy',
@@ -18,11 +37,11 @@ setup(
     description='A balanced spiking neural network simulation package',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/yourusername/balanced-spiking-network',  # Replace with your repo URL
+    url='https://github.com/fraziphy/balanced-spiking-network',
     classifiers=[
         'Programming Language :: Python :: 3',
-        'License :: OSI Approved :: MIT License',  # Choose appropriate license
+        'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
     ],
-    python_requires='>=3.8',  # Or your minimum required Python version
+    python_requires='>=3.8',
 )
