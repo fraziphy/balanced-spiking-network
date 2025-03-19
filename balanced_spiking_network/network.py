@@ -9,7 +9,7 @@ class BalancedSpikingNetwork:
     """Main network class"""
 
     def __init__(self, N=10000, C=1000, f=0.8, g=5,
-                 tau_m=10.0, V_th_mean=-55.0, V_th_distributio="uniform",
+                 tau_m=10.0, V_th_mean=-55.0, V_th_distribution="uniform",
                  V_th_std=0.0, # Added V_th_std to init
                  J_mean = 1e-3,
                  mu_zero = 15.1, # Added mu_zero to init
