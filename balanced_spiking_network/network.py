@@ -9,7 +9,7 @@ class BalancedSpikingNetwork:
     """Main network class"""
 
     def __init__(self, N=10000, C=1000, f=0.8, g=5,
-                 tau_m=10.0, V_th_mean=-55.0,
+                 tau_m=10.0, V_th_mean=-55.0, V_th_distributio="uniform",
                  V_th_std=0.0, # Added V_th_std to init
                  J_mean = 1e-3,
                  mu_zero = 15.1, # Added mu_zero to init
@@ -25,6 +25,7 @@ class BalancedSpikingNetwork:
         self.g = g
         self.tau_m = tau_m
         self.V_th_mean = V_th_mean
+        self.V_th_distributio = V_th_distributio
         self.V_th_std = V_th_std # Store V_th_std
         self.J_mean = J_mean
         self.params.mu_zero = mu_zero #initializes it in the params here
@@ -61,7 +62,7 @@ class BalancedSpikingNetwork:
                                 self.V_th_mean,
                                 self.N)
         self.V_th = gen_thresholds(
-            self.V_th_mean, self.V_th_std, self.N, self.rng[0] # Used stored V_th_std
+            self.V_th_mean, self.V_th_std, self.N, self.rng[0], self.V_th_distributio # Used stored V_th_std
         )
         self.last_spike = np.full(self.N, -np.inf)
         self.refractory = np.zeros(self.N, dtype=bool)

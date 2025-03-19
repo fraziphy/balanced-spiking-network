@@ -34,6 +34,8 @@ def main():
                         help="Membrane time constant")
     parser.add_argument("--V_th_mean", type=float, default=-55.0,
                         help="Mean threshold potential for spiking")
+    parser.add_argument("--V_th_distributio", type=str, default="uniform",
+                        help="The shape of the distribution for the threshold potential for spiking")
     parser.add_argument("--J_mean", type=float, default=1e-3,
                         help="Mean synaptic weight for excitatory synapses")
     parser.add_argument("--dt", type=float, default=0.1,
@@ -53,7 +55,7 @@ def main():
 
     # Initialize network
     net = BalancedSpikingNetwork(N=args.N, C=args.C, f=args.f, g=args.g,
-                                 tau_m=args.tau_m, V_th_mean=args.V_th_mean,
+                                 tau_m=args.tau_m, V_th_mean=args.V_th_mean, V_th_distributio = args.V_th_distributio,
                                  V_th_std=args.V_th_std, J_mean=args.J_mean,
                                  mu_zero=args.mu_zero, dt=args.dt,
                                  session=args.session, trial=args.trial)

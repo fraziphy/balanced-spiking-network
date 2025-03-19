@@ -1,16 +1,44 @@
 import numpy as np
+from .parameters import NeuralParameters
 
-def generate_heterogeneous_thresholds(V_th_mean, V_th_std, N, rng):
+
+def generate_heterogeneous_thresholds(V_th_mean, V_th_std, N, rng, distribution="uniform"):
     """
-    Generate heterogeneous threshold potentials for N neurons.
+    Generate threshold potentials ensuring V_th > V_r.
+
+    Args:
+        V_th_mean: Mean threshold potential
+        V_th_std: Standard deviation of thresholds
+        N: Number of neurons
+        rng: Random number generator
+        distribution: "uniform" or "normal" (default: "uniform")
+
+    Returns:
+        np.ndarray: Threshold potentials that are strictly greater than V_r
     """
+    # Get reset potential from parameters
+    params = NeuralParameters()
+    V_r = params.V_r
+    eps = 1e-9  # Small offset to ensure strict inequality
+
+    # Handle zero standard deviation case first (distribution irrelevant)
     if V_th_std == 0:
         V_th = np.full(N, V_th_mean)
     else:
-        V_th = rng.uniform(V_th_mean - V_th_std * np.sqrt(3),
-                           V_th_mean + V_th_std * np.sqrt(3), N)
-    return V_th
+        # Generate based on specified distribution
+        if distribution == "uniform":
+            a = V_th_mean - V_th_std * np.sqrt(3)
+            b = V_th_mean + V_th_std * np.sqrt(3)
+            V_th = rng.uniform(a, b, N)
+        elif distribution == "normal":
+            V_th = rng.normal(V_th_mean, V_th_std, N)
+        else:
+            raise ValueError(f"Invalid distribution: {distribution}. Use 'uniform' or 'normal'")
 
+    # Ensure all thresholds are strictly above V_r (applies to all cases)
+    V_th = np.clip(V_th, V_r + eps, None)
+
+    return V_th
 
 
 
