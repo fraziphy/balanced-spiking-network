@@ -25,7 +25,7 @@ class BalancedSpikingNetwork:
         self.g = g
         self.tau_m = tau_m
         self.V_th_mean = V_th_mean
-        self.V_th_distributio = V_th_distributio
+        self.V_th_distribution = V_th_distribution
         self.V_th_std = V_th_std # Store V_th_std
         self.J_mean = J_mean
         self.params.mu_zero = mu_zero #initializes it in the params here
@@ -62,7 +62,7 @@ class BalancedSpikingNetwork:
                                 self.V_th_mean,
                                 self.N)
         self.V_th = gen_thresholds(
-            self.V_th_mean, self.V_th_std, self.N, self.rng[0], self.V_th_distributio # Used stored V_th_std
+            self.V_th_mean, self.V_th_std, self.N, self.rng[0], self.V_th_distribution # Used stored V_th_std
         )
         self.last_spike = np.full(self.N, -np.inf)
         self.refractory = np.zeros(self.N, dtype=bool)
