@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+<!-- Add upcoming changes here -->
+
+## [1.1.1] - 2025-03-19
+
+### Fixed
+- Fixed a misspelling in [file name or description, if relevant].
+
 ## [1.1.0] - 2025-03-19
 
 ### Added
@@ -32,6 +40,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial stable release
 
+[Unreleased]: https://github.com/fraziphy/balanced-spiking-network/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/fraziphy/balanced-spiking-network/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/fraziphy/balanced-spiking-network/compare/v1.0.0...v1.1.0
 [1.0.0-dev]: https://github.com/fraziphy/balanced-spiking-network/releases/tag/v1.0.0-dev
 [1.0.0]: https://github.com/fraziphy/balanced-spiking-network/releases/tag/v1.0.0
